@@ -1,35 +1,20 @@
 import React, { useContext } from 'react'
 import { View, Text, Button } from 'react-native'
 
-import auth from '@react-native-firebase/auth'
-import { AuthContext } from '../navigation/AuthProvider'
-import { COLORS } from '../constant'
-
-function HomeScreen() {
-  const { logout } = useContext(AuthContext)
-
+function HomeScreen({ navigation }) {
   return (
     <View
       style={{
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1,
       }}>
       <Text
         style={{
-          fontSize: 20,
-          marginBottom: 10,
+          fontWeight: '800',
         }}>
-        {auth().currentUser.email}
+        Home
       </Text>
-
-      <Button
-        color={COLORS.primary}
-        title="Sign out"
-        onPress={() => {
-          logout()
-        }}
-      />
     </View>
   )
 }

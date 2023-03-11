@@ -2,15 +2,14 @@ import React, { useContext, useState, useCallback, useEffect } from 'react'
 import {
   StyleSheet,
   Text,
-  Image,
-  Modal,
-  Alert,
-  ScrollView,
   View,
+  KeyboardAvoidingView,
+  ScrollView,
 } from 'react-native'
 
 import { CustomTextInput, Buttons } from '../components'
 import { COLORS, DIM } from '../constant'
+import { AuthContext } from '../navigation/AuthProvider'
 
 export default function SignUpScreen() {
   const [firstName, setFirstName] = useState('')
@@ -18,25 +17,19 @@ export default function SignUpScreen() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+  const { signup } = useContext(AuthContext)
+
   const imageLink =
     'https://img.freepik.com/free-vector/natural-scene-landscape_1308-99110.jpg?w=2000'
 
   return (
-    <>
+    <React.Fragment>
       {/* <Image
         source={{ uri: imageLink }}
         style={{ height: 220, width: DIM.width }}
       /> */}
 
-      <View
-        style={{
-          height: DIM.height * 0.3,
-          width: '100%',
-          backgroundColor: '#fff',
-          justifyContent: 'center',
-          alignItems: 'center',
-          elevation: 0,
-        }}>
+      <View style={styles.logoContainer}>
         <Text
           style={{
             fontSize: 30,
@@ -46,9 +39,11 @@ export default function SignUpScreen() {
         </Text>
       </View>
 
-      <View style={styles.formContainer}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.formContainer}>
         <CustomTextInput
-          text="First Name"
+          text="Enter full name"
           onChangeText={text => setFirstName(text)}
         />
         <CustomTextInput
@@ -56,34 +51,54 @@ export default function SignUpScreen() {
           iconName="mail"
           onChangeText={text => setEmail(text)}
         />
-        <CustomTextInput
-          text="New password"
-          iconName="key"
-          pass={1}
-          color={COLORS.lightViolet}
-          onChangeText={text => setPassword(text)}
-        />
-        <CustomTextInput
-          text="Re-type new password"
-          iconName="key"
-          pass={1}
-          onChangeText={text => setConfirmPassword(text)}
-          color={COLORS.lightViolet}
-        />
-        <Buttons title="Sign up" color="paint" onPress={() => {}} />
-      </View>
-    </>
+        <KeyboardAvoidingView
+          behavior="position"
+          keyboardVerticalOffset={20}
+          contentContainerStyle={{ ...styles.formContainer, paddingTop: 0 }}>
+          <CustomTextInput
+            text="New password"
+            iconName="key"
+            pass={1}
+            color={COLORS.lightViolet}
+            onChangeText={text => setPassword(text)}
+          />
+          <CustomTextInput
+            text="Re-type new password"
+            iconName="key"
+            pass={1}
+            onChangeText={text => setConfirmPassword(text)}
+            color={COLORS.lightViolet}
+          />
+          <Buttons
+            title="Sign up"
+            color="paint"
+            onPress={() => {
+              signup(email, password, firstName)
+            }}
+          />
+        </KeyboardAvoidingView>
+      </ScrollView>
+    </React.Fragment>
   )
 }
 
 const styles = StyleSheet.create({
   formContainer: {
-    paddingTop: 20,
+    alignItems: 'center',
+    paddingTop: 10,
+    height: DIM.height * 0.7,
     width: DIM.width,
     alignItems: 'center',
-    flex: 1,
     backgroundColor: 'white',
     paddingBottom: 500,
+  },
+  logoContainer: {
+    height: DIM.height * 0.3,
+    width: '100%',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 0,
   },
   modalStyle: {
     paddingTop: 15,
