@@ -40,8 +40,9 @@ export default function SignUpScreen() {
       </View>
 
       <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.formContainer}>
+        contentContainerStyle={styles.formContainer}
+        endFillColor="#000"
+        overScrollMode="never">
         <CustomTextInput
           text="Enter full name"
           onChangeText={text => setFirstName(text)}
@@ -53,8 +54,7 @@ export default function SignUpScreen() {
         />
         <KeyboardAvoidingView
           behavior="position"
-          keyboardVerticalOffset={20}
-          contentContainerStyle={{ ...styles.formContainer, paddingTop: 0 }}>
+          contentContainerStyle={styles.keyboardAvoidingViewContainer}>
           <CustomTextInput
             text="New password"
             iconName="key"
@@ -90,7 +90,11 @@ const styles = StyleSheet.create({
     width: DIM.width,
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingBottom: 500,
+  },
+  keyboardAvoidingViewContainer: {
+    alignItems: 'center',
+    width: DIM.width,
+    backgroundColor: 'white',
   },
   logoContainer: {
     height: DIM.height * 0.3,

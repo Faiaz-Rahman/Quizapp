@@ -30,9 +30,12 @@ export const AuthProvider = ({ children }) => {
           try {
             await auth().createUserWithEmailAndPassword(email, pass)
 
+            let user_uid_to_string = auth().currentUser.uid.toString()
+
             await firestore()
               .collection('users')
-              .add({
+              .doc(user_uid_to_string)
+              .set({
                 userId: auth().currentUser.uid,
                 name: firstName,
                 createdAt: firestore.Timestamp.fromDate(new Date()),
