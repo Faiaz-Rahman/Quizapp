@@ -7,16 +7,26 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState()
+  const [showAnimation, setShowAnimation] = useState()
+  const [hasError, setHasError] = useState(false)
+
   return (
     <AuthContext.Provider
       value={{
+        hasError,
+        setHasError,
+        showAnimation,
+        setShowAnimation,
         user,
         setUser,
         login: async (email, pass) => {
           try {
             await auth().signInWithEmailAndPassword(email, pass)
+            setShowAnimation(false)
           } catch (error) {
-            console.log(error)
+            setHasError(prevState => !prevState)
+            setShowAnimation(false)
+            console.log('The hasError: ', hasError)
           }
         },
         logout: async () => {

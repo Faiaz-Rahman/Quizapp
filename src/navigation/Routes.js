@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ActivityIndicator, View, StatusBar } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
 
@@ -7,10 +6,10 @@ import auth from '@react-native-firebase/auth'
 
 import AuthStack from './AuthStack'
 import { AuthContext } from './AuthProvider'
-import { HomeNavigator } from './HomeNavigator'
+import { Drawer } from './Drawer'
 
 const Routes = () => {
-  const { user, setUser } = useContext(AuthContext)
+  const { user, setUser, showAnimation } = useContext(AuthContext)
   const [initializing, setInitializing] = useState(true)
 
   const onAuthStateChanged = user => {
@@ -28,7 +27,7 @@ const Routes = () => {
   else {
     return (
       <NavigationContainer>
-        {user ? <HomeNavigator /> : <AuthStack />}
+        {user && !showAnimation ? <Drawer /> : <AuthStack />}
       </NavigationContainer>
     )
   }

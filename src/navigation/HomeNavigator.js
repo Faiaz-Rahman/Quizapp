@@ -6,9 +6,10 @@ import { HomeScreen, LeaderBoard, Profile, Quiz, Wallet } from '../screens/'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
+//importing the icons for the project
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import Entypo from 'react-native-vector-icons/Entypo'
+// import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+// import Entypo from 'react-native-vector-icons/Entypo'
 
 const Tab = createBottomTabNavigator()
 

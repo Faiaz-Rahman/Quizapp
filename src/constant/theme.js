@@ -11,6 +11,7 @@ export const COLORS = {
   slate: '#D6DFE0',
   primary: '#e40042',
   light_primary: '#F181A1',
+  lighter_primary: '#efb9c8',
   light_yellow: '#FFF5C0',
   boxColor: '#E8E8E8',
   box_light: '#F8F3EB',

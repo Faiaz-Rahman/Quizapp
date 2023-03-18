@@ -5,6 +5,7 @@ import {
   View,
   KeyboardAvoidingView,
   ScrollView,
+  Image,
 } from 'react-native'
 
 import { CustomTextInput, Buttons } from '../components'
@@ -30,13 +31,8 @@ export default function SignUpScreen() {
       /> */}
 
       <View style={styles.logoContainer}>
-        <Text
-          style={{
-            fontSize: 30,
-            color: 'black',
-          }}>
-          App Logo
-        </Text>
+        <Image style={styles.logo} source={require('../assets/brain.png')} />
+        <Text style={styles.logoName}>Signup</Text>
       </View>
 
       <ScrollView
@@ -71,7 +67,6 @@ export default function SignUpScreen() {
           />
           <Buttons
             title="Sign up"
-            color="paint"
             onPress={() => {
               signup(email, password, firstName)
             }}
@@ -100,30 +95,22 @@ const styles = StyleSheet.create({
     height: DIM.height * 0.3,
     width: '100%',
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     elevation: 0,
+    paddingBottom: DIM.height * 0.02,
   },
-  modalStyle: {
-    paddingTop: 15,
-    height: DIM.height * 0.5,
-    width: DIM.width * 0.8,
-    backgroundColor: 'white',
-    top: '25%',
-    bottom: '25%',
-    left: '10%',
-    right: '10%',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-    borderRightColor: 'green',
-    borderLeftColor: COLORS.lightViolet,
-    borderTopColor: 'tomato',
-    borderBottomColor: 'yellow',
-    borderWidth: 10,
-    opacity: 0.75,
-    elevation: 4,
+  logo: {
+    height: 80,
+    width: 80,
+    resizeMode: 'contain',
+    marginLeft: 15,
+  },
+  logoName: {
+    fontSize: 25,
+    marginTop: 10,
+    color: COLORS.black,
+    fontWeight: '800',
   },
   textInput: {
     backgroundColor: COLORS.boxColor,

@@ -74,7 +74,7 @@ export default function OnboardingScreen({ navigation }) {
             title: 'Title',
             subtitle: (
               <Text style={styles.subtitleTextSize}>
-                Subtitile for Application
+                Subtitle for Application
               </Text>
             ),
           },
@@ -102,5 +102,6 @@ const styles = StyleSheet.create({
   },
   subtitleTextSize: {
     fontSize: 20,
+    color: COLORS.black,
   },
 })

@@ -9,7 +9,7 @@ export default function Buttons({ title, onPress, color = null, style }) {
         styles.container,
         style,
         {
-          backgroundColor: color === null ? COLORS.primary : COLORS.primary,
+          backgroundColor: color === null ? COLORS.primary : color,
         },
       ]}
       onPress={onPress}>

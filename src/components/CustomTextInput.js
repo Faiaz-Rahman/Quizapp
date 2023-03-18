@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -13,6 +13,7 @@ export default function CustomTextInput({
   color,
 }) {
   const [secure, setSecure] = useState(true)
+  const textInput = useRef(null)
 
   if (pass === null) {
     return (
@@ -26,12 +27,14 @@ export default function CustomTextInput({
           />
         )}
         <TextInput
+          ref={textInput}
           onChangeText={onChangeText}
           autoCapitalize="none"
           placeholder={text}
           placeholderTextColor="slategrey"
           style={styles.textInputText}
           keyboardType="email-address"
+          on
         />
       </View>
     )
