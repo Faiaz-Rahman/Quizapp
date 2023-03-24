@@ -1,40 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { CardItem, Header } from '../components/'
-import { DIM } from '../constant'
+import { DIM, icons } from '../constant'
 
-const icons = [
-  {
-    id: 1,
-    cardTitle: 'Math',
-    cardIcon: 'math-integral-box',
-  },
-  {
-    id: 2,
-    cardTitle: 'Physics',
-    cardIcon: 'react',
-  },
-  {
-    id: 3,
-    cardTitle: 'Chemistry',
-    cardIcon: 'lab-flask',
-  },
-  {
-    id: 4,
-    cardTitle: 'Javascript',
-    cardIcon: 'language-javascript',
-  },
-  {
-    id: 5,
-    cardTitle: 'Kotlin',
-    cardIcon: 'language-kotlin',
-  },
-  {
-    id: 6,
-    cardTitle: 'Python',
-    cardIcon: 'language-python',
-  },
-]
+import firestore from '@react-native-firebase/firestore'
 
 export default function Quiz({ navigation }) {
   return (
@@ -51,14 +20,20 @@ export default function Quiz({ navigation }) {
           contentContainerStyle={{
             paddingTop: 20,
             width: DIM.width,
-            // backgroundColor: 'red',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
           numColumns={2}
           data={icons}
           renderItem={({ item, index }) => {
-            return <CardItem card={item} />
+            return (
+              <CardItem
+                card={item}
+                onPress={() => {
+                  navigation.navigate('quiz_question', { name: item.cardTitle })
+                }}
+              />
+            )
           }}
           keyExtractor={(item, index) => index}
         />
@@ -70,7 +45,6 @@ export default function Quiz({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'green',
     marginBottom: DIM.height * 0.135,
   },
 })

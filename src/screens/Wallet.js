@@ -18,7 +18,7 @@ export default function Wallet({ navigation }) {
           style={{
             fontWeight: '800',
           }}>
-          Wallet
+          Nothing to show
         </Text>
       </View>
     </>

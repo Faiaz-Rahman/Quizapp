@@ -5,9 +5,9 @@ import { DIM, COLORS } from '../constant'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Entypo from 'react-native-vector-icons/Entypo'
 
-export default function CardItem({ card }) {
+export default function CardItem({ card, onPress }) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.innerContainer}>
         {card.cardIcon === 'lab-flask' ? (
           <Entypo

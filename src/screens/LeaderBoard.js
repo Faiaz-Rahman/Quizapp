@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     width: DIM.width * 0.96,
     marginTop: 10,
     rowGap: 13,
-    paddingTop: 10,
+    paddingTop: 5,
     alignItems: 'center',
     paddingBottom: 20,
   },

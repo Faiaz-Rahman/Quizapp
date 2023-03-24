@@ -8,8 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 //importing the icons for the project
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-// import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-// import Entypo from 'react-native-vector-icons/Entypo'
+import { QuestionNav } from './QuestionNav'
 
 const Tab = createBottomTabNavigator()
 
@@ -62,7 +61,7 @@ const HomeNavigator = () => {
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Quiz" component={Quiz} />
+      <Tab.Screen name="Quiz" component={QuestionNav} />
       <Tab.Screen name="LeaderBoard" component={LeaderBoard} />
       <Tab.Screen name="Wallet" component={Wallet} />
       <Tab.Screen name="Profile" component={Profile} />

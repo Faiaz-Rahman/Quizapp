@@ -35,6 +35,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderLeftWidth: 2,
     borderLeftColor: COLORS.lighter_primary,
+    elevation: 2,
+    shadowColor: COLORS.primary,
+    shadowOffset: 10,
+    shadowRadius: 10,
   },
   innerContainer: {
     flexDirection: 'row',

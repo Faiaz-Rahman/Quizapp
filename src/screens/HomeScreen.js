@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react'
 import { View, Text, Button, StatusBar, StyleSheet } from 'react-native'
 
 import Security from 'react-native-vpn-detect'
+
+//Importing the custom components
 import Header from '../components/Header'
 import { COLORS, DIM } from '../constant/'
 
@@ -31,6 +33,7 @@ function HomeScreen({ navigation }) {
         backgroundColor={COLORS.light_primary}
       />
       <Header
+        headerText={'Home'}
         onLeftIconPress={() => {
           navigation.toggleDrawer()
         }}

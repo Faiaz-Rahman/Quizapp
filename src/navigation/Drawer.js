@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { Header } from '../components'
 import { HomeNavigator } from './HomeNavigator'
-import { DIM } from '../constant'
+import { DIM, COLORS } from '../constant'
 
 const TheDrawer = createDrawerNavigator()
 
@@ -101,8 +101,9 @@ const Drawer = () => {
         drawerContentContainerStyle: {
           backgroundColor: 'white',
           height: DIM.height,
-          start: 0,
         },
+        drawerActiveTintColor: COLORS.primary,
+        drawerActiveBackgroundColor: COLORS.lighter_primary,
       }}>
       <TheDrawer.Screen name="Go Home" options={{}} component={HomeNavigator} />
       <TheDrawer.Screen name="How to play" options={{}} component={HowToPlay} />

@@ -52,6 +52,12 @@ function Profile({ navigation }) {
           />
           <ProfileComponent
             name={'account-clock'}
+            title={'Total Points'}
+            titleValue={'800'}
+          />
+
+          <ProfileComponent
+            name={'account-clock'}
             title={'User Since'}
             titleValue={'12th March, 2023'}
           />

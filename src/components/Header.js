@@ -7,35 +7,45 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 export default function Header({
   onLeftIconPress,
-  onRightIconPress,
   isProfile = null,
   extraStyles,
   headerText,
+  dontShowLeftIcon = false,
+  dontShowRightIcon = false,
 }) {
   return (
-    <View style={[styles.container, { ...extraStyles }]}>
-      <TouchableOpacity
-        onPress={() => {
-          onLeftIconPress()
-        }}>
-        <FontAwesome5 size={25} color={COLORS.white} name="bars" />
-      </TouchableOpacity>
+    <View
+      style={[
+        styles.container,
+        { ...extraStyles },
+        { justifyContent: dontShowLeftIcon ? 'center' : 'space-between' },
+      ]}>
+      {!dontShowLeftIcon && (
+        <TouchableOpacity
+          onPress={() => {
+            onLeftIconPress()
+          }}>
+          <FontAwesome5 size={25} color={COLORS.white} name="bars" />
+        </TouchableOpacity>
+      )}
       <Text style={styles.headerUsernameStyle}>
         {headerText ? headerText : 'Username'}
       </Text>
-      <View onPress={() => {}}>
-        {isProfile === null ? (
-          <FontAwesome size={35} color={COLORS.white} name="user-circle-o" />
-        ) : (
-          <Image
-            source={require('../assets/brain.png')}
-            style={{
-              height: 45,
-              width: 45,
-            }}
-          />
-        )}
-      </View>
+      {!dontShowRightIcon && (
+        <View>
+          {isProfile === null ? (
+            <FontAwesome size={35} color={COLORS.white} name="user-circle-o" />
+          ) : (
+            <Image
+              source={require('../assets/brain.png')}
+              style={{
+                height: 45,
+                width: 45,
+              }}
+            />
+          )}
+        </View>
+      )}
     </View>
   )
 }
@@ -51,7 +61,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   headerUsernameStyle: {
     fontSize: 19,

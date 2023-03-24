@@ -6,6 +6,7 @@ import Profile from './Profile'
 import Quiz from './Quiz'
 import LeaderBoard from './LeaderBoard'
 import Wallet from './Wallet'
+import QuizQuestion from './QuizQuestion'
 
 export {
   Quiz,
@@ -16,4 +17,5 @@ export {
   LoginScreen,
   SignupScreen,
   Wallet,
+  QuizQuestion,
 }
