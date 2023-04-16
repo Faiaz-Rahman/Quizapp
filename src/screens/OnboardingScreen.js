@@ -59,10 +59,10 @@ export default function OnboardingScreen({ navigation }) {
                 resizeMode="cover"
               />
             ),
-            title: 'Title',
+            title: 'Quizapp',
             subtitle: (
               <Text style={styles.subtitleTextSize}>
-                Subtitile for Application
+                Get in the Know - Quiz it Up!
               </Text>
             ),
           },
@@ -71,10 +71,10 @@ export default function OnboardingScreen({ navigation }) {
             image: (
               <Image source={require(imageUri_second)} style={styles.image} />
             ),
-            title: 'Title',
+            title: 'Quizapp',
             subtitle: (
               <Text style={styles.subtitleTextSize}>
-                Subtitle for Application
+                Put Your Mind to the Test!
               </Text>
             ),
           },
@@ -103,5 +103,6 @@ const styles = StyleSheet.create({
   subtitleTextSize: {
     fontSize: 20,
     color: COLORS.black,
+    fontWeight: '400',
   },
 })

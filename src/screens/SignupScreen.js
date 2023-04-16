@@ -5,6 +5,7 @@ import {
   View,
   KeyboardAvoidingView,
   ScrollView,
+  Alert,
   Image,
 } from 'react-native'
 
@@ -68,7 +69,15 @@ export default function SignUpScreen() {
           <Buttons
             title="Sign up"
             onPress={() => {
-              signup(email, password, firstName)
+              if (password === confirmPassword) {
+                signup(email, password, firstName)
+              } else {
+                Alert.alert(
+                  'Quizapp',
+                  "Password and Confirm password doesn't match",
+                  [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                )
+              }
             }}
           />
         </KeyboardAvoidingView>
