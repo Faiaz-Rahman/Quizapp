@@ -1,15 +1,58 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import React, { useEffect, useState, useCallback } from 'react'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  RefreshControl,
+} from 'react-native'
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import { Header } from '../components'
 import { COLORS, DIM } from '../constant'
 
-export default function LeaderBoard({ navigation }) {
-  const leaderBoardTitle = 'Username has topped Score-Board'
+//Firestore functions
+import firestore from '@react-native-firebase/firestore'
 
-  const data = [1, 2, 3, 4, 5, 6]
+export default function LeaderBoard({ navigation }) {
+  const [refreshing, setRefreshing] = useState(false)
+  const [topUser, setTopUser] = useState('')
+  const [leaderboardData, setLeaderboardData] = useState([])
+
+  const wait = timeout => {
+    return new Promise(resolve => setTimeout(resolve, timeout))
+  }
+
+  const fetchLeaderboardUsers = async () => {
+    let list = []
+    await firestore()
+      .collection('leaderboard')
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(item => {
+          let tmp = item.data().userArray
+          list.push(...tmp)
+        })
+      })
+
+    // console.log(list)
+
+    setLeaderboardData(list)
+    setTopUser(list[0].name)
+  }
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    fetchLeaderboardUsers()
+    wait(3500).then(() => setRefreshing(false))
+  }, [])
+
+  useEffect(() => {
+    fetchLeaderboardUsers()
+  }, [])
+
   return (
     <>
       <Header
@@ -26,12 +69,28 @@ export default function LeaderBoard({ navigation }) {
             style={styles.image}
             source={require('../assets/trophy.png')}
           />
-          <Text style={styles.headerText}>{leaderBoardTitle}</Text>
+          <View style={styles.headerTextContainer}>
+            <Text
+              style={
+                styles.headerText
+              }>{`${topUser} has topped Score-Board`}</Text>
+          </View>
         </View>
         <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={[
+                COLORS.lighter_primary,
+                COLORS.light_primary,
+                COLORS.primary,
+              ]}
+            />
+          }
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.leaderBoardContainer}>
-          {data.map((item, index) => (
+          {leaderboardData.map((item, index) => (
             <View key={index} style={styles.leaderBoardCardComponent}>
               <FontAwesome
                 size={50}
@@ -40,7 +99,7 @@ export default function LeaderBoard({ navigation }) {
               />
 
               <Text style={styles.leaderBoardCardComponentText}>
-                {'User ' + item}
+                {item.name}
               </Text>
             </View>
           ))}
@@ -73,6 +132,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     letterSpacing: 1.5,
     fontWeight: '800',
+    textAlign: 'center',
+  },
+  headerTextContainer: {
+    width: '80%',
+    // backgroundColor: 'red',
   },
   image: {
     height: 90,

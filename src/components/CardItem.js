@@ -2,28 +2,27 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { DIM, COLORS } from '../constant'
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import Entypo from 'react-native-vector-icons/Entypo'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 export default function CardItem({ card, onPress }) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.innerContainer}>
-        {card.cardIcon === 'lab-flask' ? (
-          <Entypo
-            name={card.cardIcon}
-            size={40}
-            color={COLORS.lighter_primary}
-          />
-        ) : (
-          <MaterialCommunityIcons
-            name={card.cardIcon}
-            size={40}
-            color={COLORS.lighter_primary}
-          />
-        )}
-
-        <Text>{card.cardTitle ? card.cardTitle : 'Nothing'}</Text>
+        <AntDesign
+          name={'questioncircle'}
+          size={35}
+          color={COLORS.lighter_primary}
+          style={styles.iconStyle}
+        />
+        <Text
+          style={{
+            color: COLORS.light_primary,
+            fontSize: 16,
+            fontWeight: '800',
+            letterSpacing: 1.5,
+          }}>
+          {card ? card : 'Nothing'}
+        </Text>
       </View>
     </TouchableOpacity>
   )
@@ -48,5 +47,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  iconStyle: {
+    marginBottom: 10,
   },
 })

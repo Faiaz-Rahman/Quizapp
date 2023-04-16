@@ -1,11 +1,47 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
+
 import { CardItem, Header } from '../components/'
 import { DIM, icons } from '../constant'
 
 import firestore from '@react-native-firebase/firestore'
 
-export default function Quiz({ navigation }) {
+export default function Quiz({ navigation, route }) {
+  const [data, setData] = useState([])
+  const [topicList, setTopicList] = useState([])
+
+  const fetchQuiz = async () => {
+    let empty_arr = []
+    let topics = []
+
+    try {
+      await firestore()
+        .collection('quizzes')
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            topics.push(doc.id)
+            empty_arr.push(doc.data().quesObj)
+          })
+        })
+    } catch (error) {
+      console.log('Error Occurred')
+    }
+
+    setData(empty_arr)
+    setTopicList(topics)
+
+    // console.log(empty_arr)
+  }
+
+  useEffect(() => {
+    fetchQuiz()
+
+    return () => {
+      fetchQuiz()
+    }
+  }, [])
+
   return (
     <>
       <Header
@@ -24,13 +60,17 @@ export default function Quiz({ navigation }) {
             alignItems: 'center',
           }}
           numColumns={2}
-          data={icons}
+          data={topicList}
           renderItem={({ item, index }) => {
             return (
               <CardItem
                 card={item}
                 onPress={() => {
-                  navigation.navigate('quiz_question', { name: item.cardTitle })
+                  // console.log(data)
+                  navigation.navigate('quiz_question', {
+                    quesObj: data[index],
+                    title: item,
+                  })
                 }}
               />
             )

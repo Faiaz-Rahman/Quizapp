@@ -1,17 +1,51 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native'
 
-import auth from '@react-native-firebase/auth'
 import { AuthContext } from '../navigation/AuthProvider'
 import { COLORS, DIM } from '../constant'
 import { Buttons, Header, ProfileComponent } from '../components'
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
+//Firestore functionality
+import firestore from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth'
+
 function Profile({ navigation }) {
   const { logout } = useContext(AuthContext)
+  const [currentUserData, setCurrentUserData] = useState({
+    name: '',
+    point: '',
+    email: '',
+    createdAt: '',
+  })
 
   const img = null
+
+  const fetchUserData = async () => {
+    let uid = auth().currentUser.uid
+
+    await firestore()
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then(val => {
+        const { name, point, email, createdAt } = val.data()
+
+        setCurrentUserData({
+          name,
+          point,
+          email,
+          createdAt,
+        })
+      })
+  }
+
+  useEffect(() => {
+    fetchUserData()
+
+    return () => {}
+  }, [])
 
   return (
     <>
@@ -43,23 +77,23 @@ function Profile({ navigation }) {
           <ProfileComponent
             name={'apps'}
             title={'User'}
-            titleValue={'Username'}
+            titleValue={currentUserData.name}
           />
           <ProfileComponent
             name="email"
             title="Email"
-            titleValue={'abc@gmail.com'}
+            titleValue={currentUserData.email}
           />
           <ProfileComponent
             name={'account-clock'}
             title={'Total Points'}
-            titleValue={'800'}
+            titleValue={currentUserData.point}
           />
 
           <ProfileComponent
             name={'account-clock'}
             title={'User Since'}
-            titleValue={'12th March, 2023'}
+            titleValue={currentUserData.createdAt}
           />
           <Buttons
             onPress={() => {

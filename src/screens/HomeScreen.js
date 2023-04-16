@@ -18,20 +18,9 @@ function HomeScreen({ navigation }) {
     })
   }
 
-  // useEffect(() => {
-  //   console.log(navigation.getState())
-
-  //   return () => {
-  //     // second
-  //   }
-  // }, [])
-
   return (
     <>
-      <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={COLORS.light_primary}
-      />
+      <StatusBar barStyle={'light-content'} backgroundColor={COLORS.primary} />
       <Header
         headerText={'Home'}
         onLeftIconPress={() => {
