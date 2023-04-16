@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+import { Alert } from 'react-native'
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -26,7 +27,11 @@ export const AuthProvider = ({ children }) => {
           } catch (error) {
             setHasError(prevState => !prevState)
             setShowAnimation(false)
-            console.log('The hasError: ', hasError)
+            // console.log('The hasError: ', hasError)
+
+            Alert.alert('Quizapp', error.toString(), [
+              { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ])
           }
         },
         logout: async () => {

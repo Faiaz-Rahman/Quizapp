@@ -10,7 +10,7 @@ export default function CardItem({ card, onPress }) {
       <View style={styles.innerContainer}>
         <AntDesign
           name={'questioncircle'}
-          size={35}
+          size={40}
           color={COLORS.lighter_primary}
           style={styles.iconStyle}
         />

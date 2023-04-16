@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: COLORS.light_primary,
     fontWeight: '800',
-    letterSpacing: 1,
+    letterSpacing: 0.5,
   },
   titleValueStyle: {
-    fontSize: 16,
+    fontSize: 17,
     color: 'grey',
   },
 })

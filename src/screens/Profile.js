@@ -11,6 +11,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
 
+import Lottie from 'lottie-react-native'
+
 function Profile({ navigation }) {
   const { logout } = useContext(AuthContext)
   const [currentUserData, setCurrentUserData] = useState({
@@ -20,10 +22,13 @@ function Profile({ navigation }) {
     createdAt: '',
   })
 
+  const [showAnimation, setShowAnimation] = useState(false)
+
   const img = null
 
   const fetchUserData = async () => {
     let uid = auth().currentUser.uid
+    setShowAnimation(true)
 
     await firestore()
       .collection('users')
@@ -39,6 +44,10 @@ function Profile({ navigation }) {
           createdAt,
         })
       })
+
+    setTimeout(() => {
+      setShowAnimation(false)
+    }, 1500)
   }
 
   useEffect(() => {
@@ -58,54 +67,62 @@ function Profile({ navigation }) {
         isProfile={true}
         extraStyles={styles.extraStyles}
       />
-      <View style={styles.container}>
-        {img === null ? (
-          <FontAwesome
-            name="user-circle-o"
-            size={130}
-            color={COLORS.lighter_primary}
-            style={{
-              marginBottom: 15,
-            }}
-          />
-        ) : (
-          <Image source={{}} />
-        )}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollContainer}>
-          <ProfileComponent
-            name={'apps'}
-            title={'User'}
-            titleValue={currentUserData.name}
-          />
-          <ProfileComponent
-            name="email"
-            title="Email"
-            titleValue={currentUserData.email}
-          />
-          <ProfileComponent
-            name={'account-clock'}
-            title={'Total Points'}
-            titleValue={currentUserData.point}
-          />
+      {showAnimation ? (
+        <Lottie
+          loop
+          autoPlay
+          source={require('../assets/double_loader.json')}
+        />
+      ) : (
+        <View style={styles.container}>
+          {img === null ? (
+            <FontAwesome
+              name="user-circle-o"
+              size={130}
+              color={COLORS.lighter_primary}
+              style={{
+                marginBottom: 15,
+              }}
+            />
+          ) : (
+            <Image source={{}} />
+          )}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContainer}>
+            <ProfileComponent
+              name={'apps'}
+              title={'User'}
+              titleValue={currentUserData.name}
+            />
+            <ProfileComponent
+              name="email"
+              title="Email"
+              titleValue={currentUserData.email}
+            />
+            <ProfileComponent
+              name={'account-clock'}
+              title={'Total Points'}
+              titleValue={currentUserData.point}
+            />
 
-          <ProfileComponent
-            name={'account-clock'}
-            title={'User Since'}
-            titleValue={currentUserData.createdAt}
-          />
-          <Buttons
-            onPress={() => {
-              logout()
-            }}
-            style={{
-              width: '90%',
-            }}
-            title="Log out"
-          />
-        </ScrollView>
-      </View>
+            <ProfileComponent
+              name={'account-clock'}
+              title={'User Since'}
+              titleValue={currentUserData.createdAt}
+            />
+            <Buttons
+              onPress={() => {
+                logout()
+              }}
+              style={{
+                width: '90%',
+              }}
+              title="Log out"
+            />
+          </ScrollView>
+        </View>
+      )}
     </>
   )
 }

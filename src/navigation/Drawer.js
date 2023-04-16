@@ -18,11 +18,8 @@ const HowToPlay = ({ navigation }) => {
         }}
       />
       <View style={styles.container}>
-        <Text
-          style={{
-            fontWeight: '800',
-          }}>
-          How to play
+        <Text style={styles.drawerNavText}>
+          Connect to the VPN of an American server.
         </Text>
       </View>
     </>
@@ -39,12 +36,7 @@ const About = ({ navigation }) => {
         }}
       />
       <View style={styles.container}>
-        <Text
-          style={{
-            fontWeight: '800',
-          }}>
-          About Us
-        </Text>
+        <Text style={styles.drawerNavText}>Quizapp</Text>
       </View>
     </>
   )
@@ -60,12 +52,7 @@ const Privacy = ({ navigation }) => {
         }}
       />
       <View style={styles.container}>
-        <Text
-          style={{
-            fontWeight: '800',
-          }}>
-          Privacy
-        </Text>
+        <Text style={styles.drawerNavText}>Privacy</Text>
       </View>
     </>
   )
@@ -81,12 +68,8 @@ const Contact = ({ navigation }) => {
         }}
       />
       <View style={styles.container}>
-        <Text
-          style={{
-            fontWeight: '800',
-          }}>
-          Contact us
-        </Text>
+        <Text style={styles.drawerNavText}>Contact the developer</Text>
+        <Text style={styles.drawerNavText}>faiazrahman70@gmail.com</Text>
       </View>
     </>
   )
@@ -124,6 +107,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: DIM.height * 0.135,
+  },
+  drawerNavText: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: '500',
   },
 })
 export { Drawer }

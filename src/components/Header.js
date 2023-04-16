@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: DIM.width * 0.07,
     paddingRight: DIM.width * 0.07,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.light_primary,
     elevation: 0,
     height: DIM.height * 0.135,
     borderBottomLeftRadius: 15,

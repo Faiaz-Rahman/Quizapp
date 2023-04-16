@@ -6,23 +6,65 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
+  Alert,
 } from 'react-native'
 
 //Custom Imports
 import { Header, QuestionWithOptions } from '../components'
-import { DIM, COLORS, data } from '../constant'
+import { DIM, COLORS } from '../constant'
 
-//Importing Icons
+import CountDown from 'react-native-countdown-component'
+
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
 
 export default function QuizQuestion({ navigation, route }) {
+  const warning_text =
+    'Select one option for each question and submit it within time and once selected cannot be altered. Select carefully.'
+
   const { quesObj, title } = route.params
   const [userPoints, setUserPoints] = useState(0)
   const [showModal, setShowModal] = useState(false)
+  const [pauseTimer, setPauseTimer] = useState(false)
+
+  const updateDataToFirestore = async () => {
+    const userId = auth().currentUser.uid
+    let myVal
+
+    await firestore()
+      .collection('users')
+      .doc(userId)
+      .get()
+      .then(val => {
+        myVal = val.data().point
+      })
+
+    await firestore()
+      .collection('users')
+      .doc(userId)
+      .update({
+        point: myVal + userPoints,
+      })
+  }
 
   const handleSubmit = () => {
     // console.log(userPoints)
 
-    setShowModal(true)
+    if (!pauseTimer) {
+      Alert.alert('Quizapp', 'Press Start to start the timer for quiz.', [
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ])
+    } else {
+      updateDataToFirestore()
+      setShowModal(true)
+    }
+  }
+
+  const onCloseModal = () => {
+    setShowModal(false)
+    updateDataToFirestore()
+
+    navigation.navigate('quiz_screen')
   }
 
   useEffect(() => {
@@ -32,6 +74,7 @@ export default function QuizQuestion({ navigation, route }) {
   return (
     <>
       <Header dontShowLeftIcon headerText={title} dontShowRightIcon />
+
       <View
         style={{
           flex: 1,
@@ -51,8 +94,7 @@ export default function QuizQuestion({ navigation, route }) {
               </Text>
               <TouchableOpacity
                 onPress={() => {
-                  setShowModal(false)
-                  navigation.navigate('quiz_screen')
+                  onCloseModal()
                 }}
                 style={styles.modalButton}>
                 <Text style={styles.modalButtonText}>Close</Text>
@@ -60,10 +102,51 @@ export default function QuizQuestion({ navigation, route }) {
             </View>
           </Modal>
         )}
+        <View
+          style={{
+            flexDirection: 'row',
+            // backgroundColor: 'red',
+            justifyContent: 'space-around',
+          }}>
+          <CountDown
+            style={{ marginTop: 10 }}
+            timeLabelStyle={{
+              fontSize: 14,
+              fontWeight: '800',
+              color: COLORS.light_primary,
+              marginRight: 2,
+            }}
+            digitStyle={{ backgroundColor: COLORS.light_primary }}
+            digitTxtStyle={{
+              color: 'white',
+            }}
+            until={30}
+            size={20}
+            onFinish={() => {
+              setTimeout(() => setShowModal(true), 1000)
+            }}
+            timeToShow={['M', 'S']}
+            running={pauseTimer}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              setPauseTimer(true)
+            }}
+            style={[
+              styles.modalButton,
+              {
+                width: '50%',
+                marginTop: 0,
+                alignSelf: 'center',
+                borderRadius: 10,
+              },
+            ]}>
+            <Text style={styles.modalButtonText}>Start</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.notify_text_container}>
-          <Text style={styles.notify_text}>
-            Select one option for each question and submit it within time.
-          </Text>
+          <Text style={styles.notify_text}>{warning_text}</Text>
         </View>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -186,7 +269,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingTop: 5,
     width: '90%',
-    height: 60,
+    height: 75,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

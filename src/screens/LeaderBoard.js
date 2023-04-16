@@ -10,6 +10,8 @@ import {
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
+import Lottie from 'lottie-react-native'
+
 import { Header } from '../components'
 import { COLORS, DIM } from '../constant'
 
@@ -21,12 +23,17 @@ export default function LeaderBoard({ navigation }) {
   const [topUser, setTopUser] = useState('')
   const [leaderboardData, setLeaderboardData] = useState([])
 
+  const [showAnimation, setShowAnimation] = useState(false)
+
   const wait = timeout => {
     return new Promise(resolve => setTimeout(resolve, timeout))
   }
 
   const fetchLeaderboardUsers = async () => {
     let list = []
+
+    setShowAnimation(true)
+
     await firestore()
       .collection('leaderboard')
       .get()
@@ -41,6 +48,10 @@ export default function LeaderBoard({ navigation }) {
 
     setLeaderboardData(list)
     setTopUser(list[0].name)
+
+    setTimeout(() => {
+      setShowAnimation(false)
+    }, 1500)
   }
 
   const onRefresh = useCallback(() => {
@@ -62,49 +73,56 @@ export default function LeaderBoard({ navigation }) {
         }}
         onRightIconPress={() => {}}
       />
-
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Image
-            style={styles.image}
-            source={require('../assets/trophy.png')}
-          />
-          <View style={styles.headerTextContainer}>
-            <Text
-              style={
-                styles.headerText
-              }>{`${topUser} has topped Score-Board`}</Text>
-          </View>
-        </View>
-        <ScrollView
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={[
-                COLORS.lighter_primary,
-                COLORS.light_primary,
-                COLORS.primary,
-              ]}
+      {showAnimation ? (
+        <Lottie
+          loop
+          autoPlay
+          source={require('../assets/double_loader.json')}
+        />
+      ) : (
+        <View style={styles.container}>
+          <View style={styles.headerContainer}>
+            <Image
+              style={styles.image}
+              source={require('../assets/trophy.png')}
             />
-          }
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.leaderBoardContainer}>
-          {leaderboardData.map((item, index) => (
-            <View key={index} style={styles.leaderBoardCardComponent}>
-              <FontAwesome
-                size={50}
-                color={COLORS.lighter_primary}
-                name="user-circle-o"
-              />
-
-              <Text style={styles.leaderBoardCardComponentText}>
-                {item.name}
-              </Text>
+            <View style={styles.headerTextContainer}>
+              <Text
+                style={
+                  styles.headerText
+                }>{`${topUser} has topped Score-Board`}</Text>
             </View>
-          ))}
-        </ScrollView>
-      </View>
+          </View>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                colors={[
+                  COLORS.lighter_primary,
+                  COLORS.light_primary,
+                  COLORS.primary,
+                ]}
+              />
+            }
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.leaderBoardContainer}>
+            {leaderboardData.map((item, index) => (
+              <View key={index} style={styles.leaderBoardCardComponent}>
+                <FontAwesome
+                  size={50}
+                  color={COLORS.lighter_primary}
+                  name="user-circle-o"
+                />
+
+                <Text style={styles.leaderBoardCardComponentText}>
+                  {item.name}
+                </Text>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      )}
     </>
   )
 }

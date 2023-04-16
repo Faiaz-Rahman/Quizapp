@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { DIM, COLORS } from '../constant'
 
@@ -10,6 +10,11 @@ export default function QuestionWithOptions({
   userPoints,
   setUserPoints,
 }) {
+  const [selectedAns, setSelectedAns] = useState({
+    optionInd: '',
+    disabled: [],
+  })
+
   return (
     <>
       <View style={[styles.questionItem, { width: DIM.width * 0.9 }]}>
@@ -25,6 +30,8 @@ export default function QuestionWithOptions({
           correctAns={quesItem.correctAns}
           userPoints={userPoints}
           setUserPoints={setUserPoints}
+          selectedAns={selectedAns}
+          setSelectedAns={setSelectedAns}
         />
         <Options
           correctAns={quesItem.correctAns}
@@ -32,6 +39,8 @@ export default function QuestionWithOptions({
           indexOfItem={index}
           userPoints={userPoints}
           setUserPoints={setUserPoints}
+          selectedAns={selectedAns}
+          setSelectedAns={setSelectedAns}
         />
         <Options
           correctAns={quesItem.correctAns}
@@ -39,6 +48,8 @@ export default function QuestionWithOptions({
           indexOfItem={index}
           userPoints={userPoints}
           setUserPoints={setUserPoints}
+          selectedAns={selectedAns}
+          setSelectedAns={setSelectedAns}
         />
         <Options
           correctAns={quesItem.correctAns}
@@ -46,6 +57,8 @@ export default function QuestionWithOptions({
           indexOfItem={index}
           userPoints={userPoints}
           setUserPoints={setUserPoints}
+          selectedAns={selectedAns}
+          setSelectedAns={setSelectedAns}
         />
       </View>
     </>

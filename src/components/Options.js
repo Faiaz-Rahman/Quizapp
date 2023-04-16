@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 import { COLORS, DIM } from '../constant'
@@ -11,9 +11,13 @@ export default function Options({
   setUserPoints,
   indexOfItem,
   correctAns,
+  selectedAns,
+  setSelectedAns,
 }) {
   const [select, setSelect] = useState(false)
   let color
+
+  let arr = ['A', 'B', 'C', 'D']
 
   if (item.optionInd === 'A') {
     color = 'brown'
@@ -25,13 +29,24 @@ export default function Options({
     color = 'green'
   }
 
+  useEffect(() => {
+    // console.log(selectedAns)
+    return () => {}
+  }, [selectedAns])
+
   return (
     <>
       <TouchableOpacity
+        disabled={selectedAns.disabled.includes(item.optionInd) ? true : false}
         onPress={() => {
           setSelect(prev => !prev)
+          setSelectedAns({
+            optionInd: item.optionInd,
+            disabled: arr.filter(val => val !== item.optionInd),
+          })
           if (item.optionInd === correctAns) {
             setUserPoints(userPoints + 10)
+            console.log('Correct Answer')
           } else {
             console.log('Incorrect, Try again!')
           }
