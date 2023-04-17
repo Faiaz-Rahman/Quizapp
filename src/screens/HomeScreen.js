@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react'
 import {
   View,
   Text,
-  Button,
   StatusBar,
   StyleSheet,
   ScrollView,
   RefreshControl,
+  Alert,
 } from 'react-native'
 
 import Security from 'react-native-vpn-detect'
@@ -27,15 +27,37 @@ import { COLORS, DIM } from '../constant'
 import firestore from '@react-native-firebase/firestore'
 
 function HomeScreen({ navigation }) {
-  const checkSecurity = async () => {
-    await Security.detectVPN().then(response => {
-      console.log('This is response: 1 ', response)
-    })
+  // const checkSecurity = async () => {
+  //   await Security.detectVPN().then(response => {
+  //     console.log('This is response: 1 ', response)
+  //   })
 
-    await Security.detectProxy().then(response => {
-      console.log('This is response: 2 ', response)
-    })
-  }
+  //   await Security.detectProxy().then(response => {
+  //     console.log('This is response: 2 ', response)
+  //   })
+  // }
+
+  // const checkVPN = (lat, lng) => {
+  //   let request = new XMLHttpRequest()
+
+  //   let method = 'GET'
+  //   let url = `http://maps.googleapis.com/maps/api/geocode/json?latlng='
+  //     ${lat}
+  //     ','
+  //     ${lng}
+  //     '&sensor=true`
+
+  //   let async = true
+  //   request.open(method, url, async)
+
+  //   request.onreadystatechange = function () {
+  //     if (request.readyState == 4 && request.status == 200) {
+  //       var data = JSON.parse(request.responseText)
+  //       var address = data.results[0]
+  //     }
+  //     console.log(address)
+  //   }
+  // }
 
   //All states for the screen
   const [showAnimation, setShowAnimation] = useState(false)
@@ -92,6 +114,7 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     fetchHomeScreenData()
+    // checkVPN(22.80979, 89.56439)
     return () => {}
   }, [])
 
@@ -183,13 +206,13 @@ function HomeScreen({ navigation }) {
             </View>
           </LinearGradient>
 
-          <Button
+          {/* <Button
             color={COLORS.light_primary}
             title="Check the VPN"
             onPress={() => {
               checkSecurity()
             }}
-          />
+          /> */}
         </ScrollView>
       )}
     </>

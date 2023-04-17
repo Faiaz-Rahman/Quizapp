@@ -96,7 +96,7 @@ function LoginScreen({ navigation }) {
                   color: 'black',
                   fontWeight: 'bold',
                 }}>
-                Your Appname
+                Quizapp
               </Text>
             </View>
             <CustomTextInput
