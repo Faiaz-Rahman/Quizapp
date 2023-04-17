@@ -82,12 +82,11 @@ function LoginScreen({ navigation }) {
                 width: DIM.width,
                 alignItems: 'center',
                 justifyContent: 'flex-end',
-                // backgroundColor: 'red',
                 paddingBottom: 45,
               }}>
               <Image
                 style={styles.logo}
-                source={require('../assets/brain.png')}
+                source={require('../assets/heads_up.png')}
               />
               <Text
                 style={{
@@ -175,8 +174,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   logo: {
-    height: 80,
-    width: 80,
+    height: 120,
+    width: 120,
     resizeMode: 'contain',
     marginLeft: 13,
   },

@@ -17,7 +17,7 @@ export default function CardItem({ card, onPress }) {
         <Text
           style={{
             color: COLORS.light_primary,
-            fontSize: 16,
+            fontSize: 13,
             fontWeight: '800',
             letterSpacing: 1.5,
           }}>
@@ -30,14 +30,14 @@ export default function CardItem({ card, onPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    width: DIM.width * 0.4,
-    height: DIM.height * 0.23,
+    width: DIM.width * 0.27,
+    // width: 'auto',
+    height: DIM.height * 0.17,
     backgroundColor: COLORS.lighter_primary,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
-    marginLeft: 15,
-    marginRight: 10,
+    marginRight: 15,
     marginBottom: 20,
   },
   innerContainer: {

@@ -31,6 +31,7 @@ export default function Options({
 
   useEffect(() => {
     // console.log(selectedAns)
+    // console.log(userPoints)
     return () => {}
   }, [selectedAns])
 
@@ -40,6 +41,7 @@ export default function Options({
         disabled={selectedAns.disabled.includes(item.optionInd) ? true : false}
         onPress={() => {
           setSelect(prev => !prev)
+
           setSelectedAns({
             optionInd: item.optionInd,
             disabled: arr.filter(val => val !== item.optionInd),
@@ -88,7 +90,7 @@ export default function Options({
 
 const styles = StyleSheet.create({
   questionItem: {
-    height: DIM.height * 0.12,
+    height: DIM.height * 0.09,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 15,

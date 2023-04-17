@@ -22,7 +22,7 @@ export default function QuizQuestion({ navigation, route }) {
   const warning_text =
     'Select one option for each question and submit it within time and once selected cannot be altered. Select carefully.'
 
-  const { quesObj, title } = route.params
+  const { quesObj, title, timer } = route.params
   const [userPoints, setUserPoints] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [pauseTimer, setPauseTimer] = useState(false)
@@ -55,7 +55,6 @@ export default function QuizQuestion({ navigation, route }) {
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ])
     } else {
-      updateDataToFirestore()
       setShowModal(true)
     }
   }
@@ -120,7 +119,7 @@ export default function QuizQuestion({ navigation, route }) {
             digitTxtStyle={{
               color: 'white',
             }}
-            until={30}
+            until={timer}
             size={20}
             onFinish={() => {
               setTimeout(() => setShowModal(true), 1000)
@@ -148,28 +147,49 @@ export default function QuizQuestion({ navigation, route }) {
         <View style={styles.notify_text_container}>
           <Text style={styles.notify_text}>{warning_text}</Text>
         </View>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.container}>
-          {quesObj.map((it, ind) => (
-            <QuestionWithOptions
-              key={ind}
-              quesItem={it}
-              index={ind}
-              correctAns={it.correctAns}
-              userPoints={userPoints}
-              setUserPoints={setUserPoints}
-            />
-          ))}
-          <TouchableOpacity
-            onPress={() => {
-              // navigation.goBack()
-              handleSubmit()
-            }}
-            style={styles.quiz_submit_button}>
-            <Text style={styles.quiz_submit_text}>Submit</Text>
-          </TouchableOpacity>
-        </ScrollView>
+        {!pauseTimer ? (
+          <View
+            style={{
+              // height: DIM.height * 0.44,
+              height: '60%',
+              width: DIM.width,
+              // backgroundColor: 'red',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={{
+                fontSize: 19,
+                color: COLORS.primary,
+                fontWeight: '700',
+              }}>
+              Press the start button to start the quiz.
+            </Text>
+          </View>
+        ) : (
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.container}>
+            {quesObj.map((it, ind) => (
+              <QuestionWithOptions
+                key={ind}
+                quesItem={it}
+                index={ind}
+                correctAns={it.correctAns}
+                userPoints={userPoints}
+                setUserPoints={setUserPoints}
+              />
+            ))}
+            <TouchableOpacity
+              onPress={() => {
+                // navigation.goBack()
+                handleSubmit()
+              }}
+              style={styles.quiz_submit_button}>
+              <Text style={styles.quiz_submit_text}>Submit</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        )}
       </View>
     </>
   )

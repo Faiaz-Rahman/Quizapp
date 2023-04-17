@@ -32,7 +32,7 @@ export default function SignUpScreen() {
       /> */}
 
       <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require('../assets/brain.png')} />
+        <Image style={styles.logo} source={require('../assets/heads_up.png')} />
         <Text style={styles.logoName}>Signup</Text>
       </View>
 
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
     paddingBottom: DIM.height * 0.02,
   },
   logo: {
-    height: 80,
-    width: 80,
+    height: 100,
+    width: 100,
     resizeMode: 'contain',
     marginLeft: 15,
   },

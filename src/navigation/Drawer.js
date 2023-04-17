@@ -87,6 +87,10 @@ const Drawer = () => {
         },
         drawerActiveTintColor: COLORS.primary,
         drawerActiveBackgroundColor: COLORS.lighter_primary,
+        drawerInactiveBackgroundColor: COLORS.gainsboro,
+        drawerLabelStyle: {
+          color: 'white',
+        },
       }}>
       <TheDrawer.Screen name="Go Home" options={{}} component={HomeNavigator} />
       <TheDrawer.Screen name="How to play" options={{}} component={HowToPlay} />

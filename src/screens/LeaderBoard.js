@@ -110,7 +110,7 @@ export default function LeaderBoard({ navigation }) {
             {leaderboardData.map((item, index) => (
               <View key={index} style={styles.leaderBoardCardComponent}>
                 <FontAwesome
-                  size={50}
+                  size={40}
                   color={COLORS.lighter_primary}
                   name="user-circle-o"
                 />
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: COLORS.light_primary,
     marginTop: 10,
-    width: DIM.width * 0.95,
-    height: DIM.height * 0.25,
+    width: DIM.width * 0.9,
+    height: DIM.height * 0.18,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
@@ -157,22 +157,22 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   image: {
-    height: 90,
-    width: 90,
+    height: 60,
+    width: 60,
     tintColor: COLORS.white,
   },
   leaderBoardContainer: {
     width: DIM.width * 0.96,
     marginTop: 10,
-    rowGap: 13,
+    rowGap: 9,
     paddingTop: 5,
     alignItems: 'center',
     paddingBottom: 20,
   },
   leaderBoardCardComponent: {
     flexDirection: 'row',
-    width: '95%',
-    height: DIM.height * 0.12,
+    width: '90%',
+    height: DIM.height * 0.1,
     backgroundColor: COLORS.white,
     borderRadius: 15,
     alignItems: 'center',

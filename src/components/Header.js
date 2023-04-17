@@ -37,10 +37,10 @@ export default function Header({
             <FontAwesome size={35} color={COLORS.white} name="user-circle-o" />
           ) : (
             <Image
-              source={require('../assets/brain.png')}
+              source={require('../assets/heads_up.png')}
               style={{
-                height: 45,
-                width: 45,
+                height: 55,
+                width: 55,
               }}
             />
           )}

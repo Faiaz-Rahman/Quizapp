@@ -27,37 +27,7 @@ import { COLORS, DIM } from '../constant'
 import firestore from '@react-native-firebase/firestore'
 
 function HomeScreen({ navigation }) {
-  // const checkSecurity = async () => {
-  //   await Security.detectVPN().then(response => {
-  //     console.log('This is response: 1 ', response)
-  //   })
-
-  //   await Security.detectProxy().then(response => {
-  //     console.log('This is response: 2 ', response)
-  //   })
-  // }
-
-  // const checkVPN = (lat, lng) => {
-  //   let request = new XMLHttpRequest()
-
-  //   let method = 'GET'
-  //   let url = `http://maps.googleapis.com/maps/api/geocode/json?latlng='
-  //     ${lat}
-  //     ','
-  //     ${lng}
-  //     '&sensor=true`
-
-  //   let async = true
-  //   request.open(method, url, async)
-
-  //   request.onreadystatechange = function () {
-  //     if (request.readyState == 4 && request.status == 200) {
-  //       var data = JSON.parse(request.responseText)
-  //       var address = data.results[0]
-  //     }
-  //     console.log(address)
-  //   }
-  // }
+  const checkVPN = () => {}
 
   //All states for the screen
   const [showAnimation, setShowAnimation] = useState(false)
@@ -114,7 +84,6 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     fetchHomeScreenData()
-    // checkVPN(22.80979, 89.56439)
     return () => {}
   }, [])
 
@@ -153,7 +122,7 @@ function HomeScreen({ navigation }) {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.container}>
           <LinearGradient
-            start={{ x: -0.7, y: 0 }}
+            start={{ x: 0.7, y: 0 }}
             colors={[
               COLORS.primary,
               COLORS.light_primary,
@@ -171,7 +140,7 @@ function HomeScreen({ navigation }) {
           </LinearGradient>
 
           <LinearGradient
-            start={{ x: -0.7, y: 0 }}
+            start={{ x: 0.7, y: 0 }}
             colors={[
               COLORS.primary,
               COLORS.light_primary,
@@ -189,7 +158,7 @@ function HomeScreen({ navigation }) {
           </LinearGradient>
 
           <LinearGradient
-            start={{ x: -0.7, y: 0 }}
+            start={{ x: 0.7, y: 0 }}
             colors={[
               COLORS.primary,
               COLORS.light_primary,
@@ -205,14 +174,6 @@ function HomeScreen({ navigation }) {
               </Text>
             </View>
           </LinearGradient>
-
-          {/* <Button
-            color={COLORS.light_primary}
-            title="Check the VPN"
-            onPress={() => {
-              checkSecurity()
-            }}
-          /> */}
         </ScrollView>
       )}
     </>
@@ -225,10 +186,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: DIM.height * 0.005,
     paddingBottom: DIM.height * 0.16,
-    rowGap: 6,
+    rowGap: 2,
   },
   card_container: {
-    height: DIM.height * 0.27,
+    height: DIM.height * 0.18,
     width: DIM.width * 0.85,
     borderRadius: 10,
     marginTop: DIM.height * 0.014,

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { DIM, COLORS } from '../constant'
 
@@ -14,6 +14,10 @@ export default function QuestionWithOptions({
     optionInd: '',
     disabled: [],
   })
+
+  useEffect(() => {
+    console.log(selectedAns)
+  }, [selectedAns])
 
   return (
     <>
@@ -70,11 +74,11 @@ const styles = StyleSheet.create({
     // backgroundColor: 'tomato',
     paddingLeft: DIM.width * 0.1,
     width: DIM.width * 0.9,
-    height: DIM.height * 0.55,
+    height: DIM.height * 0.43,
     rowGap: 13,
   },
   questionItem: {
-    height: DIM.height * 0.12,
+    height: DIM.height * 0.09,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 15,
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   question: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: '700',
   },
 })

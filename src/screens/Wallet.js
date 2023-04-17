@@ -68,7 +68,7 @@ export default function Wallet({ navigation }) {
       ) : (
         <View style={styles.container}>
           <LinearGradient
-            start={{ x: -0.7, y: 0 }}
+            start={{ x: 0.7, y: 0 }}
             colors={[
               COLORS.primary,
               COLORS.light_primary,
@@ -86,7 +86,7 @@ export default function Wallet({ navigation }) {
           </LinearGradient>
 
           <LinearGradient
-            start={{ x: -0.7, y: 0 }}
+            start={{ x: 0.7, y: 0 }}
             colors={[
               COLORS.primary,
               COLORS.light_primary,
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
     marginBottom: DIM.height * 0.135,
   },
   card_container: {
-    height: DIM.height * 0.27,
-    width: DIM.width * 0.85,
+    height: DIM.height * 0.2,
+    width: DIM.width * 0.9,
     borderRadius: 10,
     marginTop: DIM.height * 0.014,
     justifyContent: 'center',
