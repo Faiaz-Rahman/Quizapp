@@ -1,3 +1,3 @@
-import { DIM, COLORS, data, icons } from './theme'
+import { DIM, COLORS, data } from './theme'
 
-export { DIM, COLORS, data, icons }
+export { DIM, COLORS, data }

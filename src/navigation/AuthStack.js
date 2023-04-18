@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import { LoginScreen, OnboardingScreen, SignupScreen } from '../screens'
+import { LoginScreen, SignupScreen } from '../screens'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import OnboardingNav from './OnboardingNav'
 
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -35,9 +37,7 @@ export default AuthStack = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen
-        name="Onboarding"
-        component={OnboardingScreen}></Stack.Screen>
+      <Stack.Screen name="Onboarding" component={OnboardingNav}></Stack.Screen>
       <Stack.Screen name="Login" component={LoginScreen} options={{}} />
       <Stack.Screen name="Signup" component={SignupScreen} options={{}} />
     </Stack.Navigator>

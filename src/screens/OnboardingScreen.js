@@ -47,7 +47,7 @@ export default function OnboardingScreen({ navigation }) {
         NextButtonComponent={next}
         SkipButtonComponent={skip}
         DoneButtonComponent={done}
-        onDone={() => navigation.navigate('Login')}
+        onDone={() => navigation.navigate('QuizDemo')}
         onSkip={() => {}}
         pages={[
           {
@@ -73,9 +73,7 @@ export default function OnboardingScreen({ navigation }) {
             ),
             title: 'Quizapp',
             subtitle: (
-              <Text style={styles.subtitleTextSize}>
-                Put Your Mind to the Test!
-              </Text>
+              <Text style={styles.subtitleTextSize}>Let's play a demo!</Text>
             ),
           },
         ]}

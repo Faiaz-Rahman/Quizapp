@@ -20,141 +20,102 @@ export const COLORS = {
 }
 
 export const data = [
-  {
-    id: 1,
-    question: 'Question 1',
-    options: [
-      {
-        val: 'Option A',
-        index: 'A',
-        color: 'brown',
-      },
-      {
-        val: 'Option B',
-        index: 'B',
-        color: 'red',
-      },
-      {
-        val: 'Option C',
-        index: 'C',
-        color: 'blue',
-      },
-      {
-        val: 'Option D',
-        index: 'D',
-        color: 'green',
-      },
-    ],
-  },
-  {
-    id: 2,
-    question: 'Question 2',
-    options: [
-      {
-        val: 'Option A',
-        index: 'A',
-        color: 'brown',
-      },
-      {
-        val: 'Option B',
-        index: 'B',
-        color: 'red',
-      },
-      {
-        val: 'Option C',
-        index: 'C',
-        color: 'blue',
-      },
-      {
-        val: 'Option D',
-        index: 'D',
-        color: 'green',
-      },
-    ],
-  },
-  {
-    id: 3,
-    question: 'Question 3',
-    options: [
-      {
-        val: 'Option A',
-        index: 'A',
-        color: 'brown',
-      },
-      {
-        val: 'Option B',
-        index: 'B',
-        color: 'red',
-      },
-      {
-        val: 'Option C',
-        index: 'C',
-        color: 'blue',
-      },
-      {
-        val: 'Option D',
-        index: 'D',
-        color: 'green',
-      },
-    ],
-  },
-  {
-    id: 4,
-    question: 'Question 4',
-    options: [
-      {
-        val: 'Option A',
-        index: 'A',
-        color: 'brown',
-      },
-      {
-        val: 'Option B',
-        index: 'B',
-        color: 'red',
-      },
-      {
-        val: 'Option C',
-        index: 'C',
-        color: 'blue',
-      },
-      {
-        val: 'Option D',
-        index: 'D',
-        color: 'green',
-      },
-    ],
-  },
-]
-
-export const icons = [
-  {
-    id: 1,
-    cardTitle: 'Math',
-    cardIcon: 'math-integral-box',
-  },
-  {
-    id: 2,
-    cardTitle: 'Physics',
-    cardIcon: 'react',
-  },
-  {
-    id: 3,
-    cardTitle: 'Chemistry',
-    cardIcon: 'lab-flask',
-  },
-  {
-    id: 4,
-    cardTitle: 'Javascript',
-    cardIcon: 'language-javascript',
-  },
-  {
-    id: 5,
-    cardTitle: 'Kotlin',
-    cardIcon: 'language-kotlin',
-  },
-  {
-    id: 6,
-    cardTitle: 'Python',
-    cardIcon: 'language-python',
-  },
+  [
+    {
+      correctAns: 'D',
+      options: [
+        { optionInd: 'A', optionVal: 'H2SO4' },
+        { optionInd: 'B', optionVal: 'H2SO3' },
+        { optionInd: 'C', optionVal: 'H30' },
+        { optionInd: 'D', optionVal: 'H20' },
+      ],
+      ques: 'What is the formula of Water?',
+      topic: 'Chemistry',
+    },
+    {
+      correctAns: 'B',
+      options: [
+        { optionInd: 'A', optionVal: 'H2SO4' },
+        { optionInd: 'B', optionVal: 'C02' },
+        { optionInd: 'C', optionVal: 'H30' },
+        { optionInd: 'D', optionVal: 'H20' },
+      ],
+      ques: 'What is the formula of Carbon Dioxide?',
+      topic: 'Chemistry',
+    },
+  ],
+  [
+    {
+      correctAns: 'D',
+      options: [
+        { optionInd: 'A', optionVal: 'op1' },
+        { optionInd: 'B', optionVal: 'op2' },
+        { optionInd: 'C', optionVal: 'op3' },
+        { optionInd: 'D', optionVal: 'op4' },
+      ],
+      ques: 'History Question 1',
+      topic: 'History',
+    },
+    {
+      correctAns: 'B',
+      options: [
+        { optionInd: 'A', optionVal: 'op1' },
+        { optionInd: 'B', optionVal: 'op2' },
+        { optionInd: 'C', optionVal: 'op3' },
+        { optionInd: 'D', optionVal: 'op4' },
+      ],
+      ques: 'History Question 2',
+      topic: 'History',
+    },
+  ],
+  [
+    {
+      correctAns: 'C',
+      options: [
+        { optionInd: 'A', optionVal: 'op1' },
+        { optionInd: 'B', optionVal: 'op2' },
+        { optionInd: 'C', optionVal: 'op3' },
+        { optionInd: 'D', optionVal: 'op4' },
+      ],
+      ques: 'Law Question 1',
+      topic: 'Law',
+    },
+  ],
+  [
+    {
+      correctAns: 'C',
+      options: [
+        { optionInd: 'A', optionVal: '3.76' },
+        { optionInd: 'B', optionVal: '3.11' },
+        { optionInd: 'C', optionVal: '3.14' },
+        { optionInd: 'D', optionVal: '4.14' },
+      ],
+      ques: 'What is the value of Pi?',
+      topic: 'Math',
+    },
+    {
+      correctAns: 'B',
+      options: [
+        { optionInd: 'A', optionVal: 'op1' },
+        { optionInd: 'B', optionVal: 'op2' },
+        { optionInd: 'C', optionVal: 'op3' },
+        { optionInd: 'D', optionVal: 'op4' },
+      ],
+      ques: 'Math question 2',
+      topic: 'Math',
+    },
+  ],
+  [
+    {
+      correctAns: 'A',
+      options: [
+        { optionInd: 'A', optionVal: 'Permittivity' },
+        { optionInd: 'B', optionVal: 'Permeability' },
+        { optionInd: 'C', optionVal: 'Velocity' },
+        { optionInd: 'D', optionVal: 'Gravitation' },
+      ],
+      ques: 'What do you mean by Mu?',
+      topic: 'Physics',
+    },
+  ],
 ]
