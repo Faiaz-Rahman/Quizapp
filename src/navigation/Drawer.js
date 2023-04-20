@@ -85,12 +85,12 @@ const Drawer = () => {
           backgroundColor: 'white',
           height: DIM.height,
         },
-        drawerActiveTintColor: COLORS.primary,
+        drawerActiveTintColor: COLORS.white,
         drawerActiveBackgroundColor: COLORS.lighter_primary,
         drawerInactiveBackgroundColor: COLORS.gainsboro,
-        drawerLabelStyle: {
-          color: 'white',
-        },
+        drawerLabelStyle: ({ focused }) => ({
+          color: focused ? 'white' : 'grey',
+        }),
       }}>
       <TheDrawer.Screen name="Go Home" options={{}} component={HomeNavigator} />
       <TheDrawer.Screen name="How to play" options={{}} component={HowToPlay} />
